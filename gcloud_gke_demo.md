@@ -90,3 +90,10 @@ gcloud compute config-ssh
 gcloud compute instances list
 ssh gke-cockroachdb-default-pool-1527ec03-1j35.us-east1-b.cockroach-glenn
 ```
+
+## Create Workload k8s
+```
+kubectl run cockroachdb -it --image=cockroachdb/cockroach:v20.1.4 --rm --restart=Never -- workload init kv  postgres://root@cockroachdb-public:26257?sslmode=disable
+
+kubectl run cockroachdb -it --image=cockroachdb/cockroach:v20.1.4 --rm --restart=Never -- workload run kv  postgres://root@cockroachdb-public:26257?sslmode=disable
+```
